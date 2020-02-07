@@ -10,7 +10,6 @@ import random
 from bs4 import BeautifulSoup
 from log.jdlogger import logger
 from jdemail.jdEmail import sendMail
-
 '''
 需要修改
 '''
@@ -20,7 +19,7 @@ cookies_String = 'unpl=V2_ZzNtbUVSREB9ChVceB9fVWJWG1xKUkVAdAkTVikaXQxgBBUOclRCFn
 # 有货通知 收件邮箱
 mail = 'zbinks@126.com'
 # 商品的url
-url = {
+url = [
     'https://c0.3.cn/stock?skuId=1835967&area=16_1362_44319_51500&venderId=1000084390&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=jd_77a8935fb872d&pduid=526700225&ch=1&callback=jQuery1535213',
     'https://c0.3.cn/stock?skuId=1835968&area=16_1362_44319_51500&venderId=1000084390&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=jd_77a8935fb872d&pduid=526700225&ch=1&callback=jQuery366840',
     'https://c0.3.cn/stock?skuId=1336984&area=16_1362_44319_51500&venderId=1000078145&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=jd_77a8935fb872d&pduid=526700225&ch=1&callback=jQuery94700',
@@ -128,7 +127,8 @@ url = {
     'https://c0.3.cn/stock?skuId=20826949214&area=1_2810_6501_0&venderId=145557&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=503352477-283496&pduid=953263522&ch=1&callback=jQuery1772913',
     'https://c0.3.cn/stock?skuId=20826949215&area=1_2810_6501_0&venderId=145557&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=503352477-283496&pduid=953263522&ch=1&callback=jQuery9852726',
     'https://c0.3.cn/stock?skuId=1597682782&area=1_2810_6501_0&venderId=145557&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=503352477-283496&pduid=953263522&ch=1&callback=jQuery6278925',
-    'https://c0.3.cn/stock?skuId=11106544810&area=1_2810_6501_0&venderId=145557&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=503352477-283496&pduid=953263522&ch=1&callback=jQuery7890980'
+    'https://c0.3.cn/stock?skuId=11106544810&area=1_2810_6501_0&venderId=145557&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=503352477-283496&pduid=953263522&ch=1&callback=jQuery7890980'，
+
 
 
     # 'https://c0.3.cn/stock?skuId=1336984&area=19_1607_4773_0&venderId=1000078145&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=jd_7c3992aa27d1a&pduid=1580535906442142991701&ch=1&callback=jQuery6715489',
@@ -139,96 +139,7 @@ url = {
     # 'https://c0.3.cn/stock?skuId=7498165&area=19_1607_4773_0&venderId=1000128491&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=jd_7c3992aa27d1a&pduid=15631231857651045904648&ch=1&callback=jQuery9614479',
     'https://c0.3.cn/stock?skuId=7263128&area=19_1607_4773_0&venderId=1000128491&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=jd_7c3992aa27d1a&pduid=15631231857651045904648&ch=1&callback=jQuery8872960',
     # 'https://c0.3.cn/stock?skuId=1739089&area=19_1607_4773_0&venderId=1000017287&buyNum=1&choseSuitSkuIds=&cat=15248,15250,15278&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=jd_7c3992aa27d1a&pduid=1580535906442142991701&ch=1&callback=jQuery4479703'
-    'https://c0.3.cn/stock?skuId=1337002&area=1_72_2799_0&venderId=1000078145&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery7277764'
-    'https://c0.3.cn/stock?skuId=2582352&area=1_72_2799_0&venderId=1000078145&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery4919741'
-    'https://c0.3.cn/stock?skuId=1336984&area=1_72_2799_0&venderId=1000078145&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery5568297'
-    'https://c0.3.cn/stock?skuId=100009443324&area=1_72_2799_0&venderId=1000084542&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery5104704'
-    'https://c0.3.cn/stock?skuId=100010233106&area=1_72_2799_0&venderId=1000084542&buyNum=3&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery3799242'
-    'https://c0.3.cn/stock?skuId=100006784140&area=1_72_2799_0&venderId=1000084542&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery7458938'
-    'https://c0.3.cn/stock?skuId=100003973898&area=1_72_2799_0&venderId=1000084542&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery5854086'
-    'https://c0.3.cn/stock?skuId=100003988835&area=1_72_2799_0&venderId=1000084542&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery9941712'
-    'https://c0.3.cn/stock?skuId=100000380689&area=1_72_2799_0&venderId=1000135921&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery5475657'
-    'https://c0.3.cn/stock?skuId=100011303174&area=1_72_2799_0&venderId=1000135921&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery382720'
-    'https://c0.3.cn/stock?skuId=100003018321&area=1_72_2799_0&venderId=1000135921&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery6573818'
-    'https://c0.3.cn/stock?skuId=100004849402&area=1_72_2799_0&venderId=1000135921&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery927091'
-    'https://c0.3.cn/stock?skuId=100011303172&area=1_72_2799_0&venderId=1000135921&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery7099571'
-    'https://c0.3.cn/stock?skuId=100011303176&area=1_72_2799_0&venderId=1000135921&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery9722922'
-    'https://c0.3.cn/stock?skuId=100006252939&area=1_72_2799_0&venderId=1000135921&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery1504924'
-    'https://c0.3.cn/stock?skuId=100011303180&area=1_72_2799_0&venderId=1000135921&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery3136958'
-    'https://c0.3.cn/stock?skuId=100011303190&area=1_72_2799_0&venderId=1000135921&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery635774'
-    'https://c0.3.cn/stock?skuId=18306971150&area=1_72_2799_0&venderId=663284&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery5786790'
-    'https://c0.3.cn/stock?skuId=100006153637&area=1_72_2799_0&venderId=1000092342&cat=14065,14099,14103&buyNum=1&choseSuitSkuIds=&extraParam={%22originid%22:%221%22}&ch=1&fqsp=0&pduid=2102363655&pdpin=1615272479_m&detailedAdd=null&callback=jQuery2438819'''
-    'https://c0.3.cn/stock?skuId=100011107634&area=1_72_2799_0&venderId=1000092342&cat=14065,14099,14103&buyNum=1&choseSuitSkuIds=&extraParam={%22originid%22:%221%22}&ch=1&fqsp=0&pduid=2102363655&pdpin=1615272479_m&detailedAdd=null&callback=jQuery1856614'''
-    'https://c0.3.cn/stock?skuId=100011197920&area=1_72_2799_0&venderId=1000092342&cat=14065,14099,14103&buyNum=5&choseSuitSkuIds=&extraParam={%22originid%22:%221%22}&ch=1&fqsp=0&pduid=2102363655&pdpin=1615272479_m&detailedAdd=null&callback=jQuery6900665'''
-    'https://c0.3.cn/stock?skuId=100011341640&area=1_72_2799_0&venderId=1000108181&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery881321'''
-    'https://c0.3.cn/stock?skuId=100011290074&area=1_72_2799_0&venderId=1000108181&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery6896194'''
-    'https://c0.3.cn/stock?skuId=11609507800&area=1_72_2799_0&venderId=656282&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery782914'''
-    'https://c0.3.cn/stock?skuId=10554550907&area=1_72_2799_0&venderId=597521&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery4313493'''
-    'https://c0.3.cn/stock?skuId=4993437&area=1_72_2799_0&venderId=0&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery9558125'''
-    'https://c0.3.cn/stock?skuId=49007827200&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery7852843'''
-    'https://c0.3.cn/stock?skuId=49007827199&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery5059702'
-    'https://c0.3.cn/stock?skuId=49007836701&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery8757675'
-    'https://c0.3.cn/stock?skuId=49007836702&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery5656598'
-    'https://c0.3.cn/stock?skuId=49007836703&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery9261188'
-    'https://c0.3.cn/stock?skuId=49007836704&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery4034059'
-    'https://c0.3.cn/stock?skuId=49007836705&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery9960274'
-    'https://c0.3.cn/stock?skuId=49007836706&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery9357125'
-    'https://c0.3.cn/stock?skuId=49007836707&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery8336220'
-    'https://c0.3.cn/stock?skuId=49007836708&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery8799267'
-    'https://c0.3.cn/stock?skuId=49007836709&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery5748418'
-    'https://c0.3.cn/stock?skuId=49007836710&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery4443309'
-    'https://c0.3.cn/stock?skuId=49007836711&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery1147512'
-    'https://c0.3.cn/stock?skuId=49007836712&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery8555459'
-    'https://c0.3.cn/stock?skuId=49007836713&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery1600259'
-    'https://c0.3.cn/stock?skuId=49007836714&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery7189779'
-    'https://c0.3.cn/stock?skuId=49007836715&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery2268663'
-    'https://c0.3.cn/stock?skuId=49007836716&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery3299226'
-    'https://c0.3.cn/stock?skuId=8508919&area=1_72_2799_0&venderId=1000135921&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery2108512'
-    'https://c0.3.cn/stock?skuId=8010807&area=1_72_2799_0&venderId=1000135921&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery2062568'
-    'https://c0.3.cn/stock?skuId=8296344&area=1_72_2799_0&venderId=1000135921&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery3244829https://c0.3.cn/stock?skuId=100010233106&area=1_72_2799_0&venderId=1000084542&buyNum=3&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery3799242'''
-    'https://c0.3.cn/stock?skuId=100006784140&area=1_72_2799_0&venderId=1000084542&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery7458938'
-    'https://c0.3.cn/stock?skuId=100003973898&area=1_72_2799_0&venderId=1000084542&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery5854086'
-    'https://c0.3.cn/stock?skuId=100003988835&area=1_72_2799_0&venderId=1000084542&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery9941712'
-    'https://c0.3.cn/stock?skuId=100000380689&area=1_72_2799_0&venderId=1000135921&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery5475657'
-    'https://c0.3.cn/stock?skuId=100011303174&area=1_72_2799_0&venderId=1000135921&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery382720'
-    'https://c0.3.cn/stock?skuId=100003018321&area=1_72_2799_0&venderId=1000135921&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery6573818'
-    'https://c0.3.cn/stock?skuId=100004849402&area=1_72_2799_0&venderId=1000135921&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery927091'
-    'https://c0.3.cn/stock?skuId=100011303172&area=1_72_2799_0&venderId=1000135921&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery7099571'
-    'https://c0.3.cn/stock?skuId=100011303176&area=1_72_2799_0&venderId=1000135921&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery9722922'
-    'https://c0.3.cn/stock?skuId=100006252939&area=1_72_2799_0&venderId=1000135921&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery1504924'
-    'https://c0.3.cn/stock?skuId=100011303180&area=1_72_2799_0&venderId=1000135921&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery3136958'
-    'https://c0.3.cn/stock?skuId=100011303190&area=1_72_2799_0&venderId=1000135921&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery635774'
-    'https://c0.3.cn/stock?skuId=18306971150&area=1_72_2799_0&venderId=663284&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery5786790'
-    'https://c0.3.cn/stock?skuId=100006153637&area=1_72_2799_0&venderId=1000092342&cat=14065,14099,14103&buyNum=1&choseSuitSkuIds=&extraParam={%22originid%22:%221%22}&ch=1&fqsp=0&pduid=2102363655&pdpin=1615272479_m&detailedAdd=null&callback=jQuery2438819'
-    'https://c0.3.cn/stock?skuId=100011107634&area=1_72_2799_0&venderId=1000092342&cat=14065,14099,14103&buyNum=1&choseSuitSkuIds=&extraParam={%22originid%22:%221%22}&ch=1&fqsp=0&pduid=2102363655&pdpin=1615272479_m&detailedAdd=null&callback=jQuery1856614'
-    'https://c0.3.cn/stock?skuId=100011197920&area=1_72_2799_0&venderId=1000092342&cat=14065,14099,14103&buyNum=5&choseSuitSkuIds=&extraParam={%22originid%22:%221%22}&ch=1&fqsp=0&pduid=2102363655&pdpin=1615272479_m&detailedAdd=null&callback=jQuery6900665'
-    'https://c0.3.cn/stock?skuId=100011341640&area=1_72_2799_0&venderId=1000108181&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery881321'
-    'https://c0.3.cn/stock?skuId=100011290074&area=1_72_2799_0&venderId=1000108181&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery6896194'
-    'https://c0.3.cn/stock?skuId=11609507800&area=1_72_2799_0&venderId=656282&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery782914'
-    'https://c0.3.cn/stock?skuId=10554550907&area=1_72_2799_0&venderId=597521&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery4313493'
-    'https://c0.3.cn/stock?skuId=4993437&area=1_72_2799_0&venderId=0&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery9558125'
-    'https://c0.3.cn/stock?skuId=49007827200&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery7852843'
-    'https://c0.3.cn/stock?skuId=49007827199&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery5059702'
-    'https://c0.3.cn/stock?skuId=49007836701&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery8757675'
-    'https://c0.3.cn/stock?skuId=49007836702&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery5656598'
-    'https://c0.3.cn/stock?skuId=49007836703&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery9261188'
-    'https://c0.3.cn/stock?skuId=49007836704&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery4034059'
-    'https://c0.3.cn/stock?skuId=49007836705&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery9960274'
-    'https://c0.3.cn/stock?skuId=49007836706&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery9357125'
-    'https://c0.3.cn/stock?skuId=49007836707&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery8336220'
-    'https://c0.3.cn/stock?skuId=49007836708&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery8799267'
-    'https://c0.3.cn/stock?skuId=49007836709&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery5748418'
-    'https://c0.3.cn/stock?skuId=49007836710&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery4443309'
-    'https://c0.3.cn/stock?skuId=49007836711&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery1147512'
-    'https://c0.3.cn/stock?skuId=49007836712&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery8555459'
-    'https://c0.3.cn/stock?skuId=49007836713&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery1600259'
-    'https://c0.3.cn/stock?skuId=49007836714&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery7189779'
-    'https://c0.3.cn/stock?skuId=49007836715&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery2268663'
-    'https://c0.3.cn/stock?skuId=49007836716&area=1_72_2799_0&venderId=10160578&buyNum=1&choseSuitSkuIds=&cat=9192,12190,1517&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery3299226'
-    'https://c0.3.cn/stock?skuId=8508919&area=1_72_2799_0&venderId=1000135921&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery2108512'
-    'https://c0.3.cn/stock?skuId=8010807&area=1_72_2799_0&venderId=1000135921&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery2062568'
-    'https://c0.3.cn/stock?skuId=8296344&area=1_72_2799_0&venderId=1000135921&buyNum=1&choseSuitSkuIds=&cat=9855,9858,9924&extraParam={%22originid%22:%221%22}&fqsp=0&pdpin=1615272479_m&pduid=2102363655&ch=1&callback=jQuery3244829'
-}
+]
 '''
 备用
 '''
@@ -287,7 +198,7 @@ def validate_cookies():
                 return True
             else:
                 logger.info('第【%s】次请重新获取cookie', flag)
-                sendMail(mail, '需要重新登录', True)
+                sendMail(mail,'需要重新登录', True)
                 time.sleep(5)
                 continue
         except Exception as e:
@@ -657,9 +568,9 @@ while (1):
                 if item_removed(skuId):
                     logger.info('[%s]类型口罩有货啦!马上下单', skuId)
                     if buyMask(skuId):
-                        sendMail(mail, skuidUrl, True)
+                        sendMail(mail,skuidUrl, True)
                     else:
-                        sendMail(mail, skuidUrl, False)
+                        sendMail(mail,skuidUrl, False)
                 else:
                     logger.info('[%s]类型口罩有货，但已下柜商品', skuId)
         time.sleep(timesleep)
