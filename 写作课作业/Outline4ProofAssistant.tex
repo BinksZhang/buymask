@@ -1,0 +1,142 @@
+\documentclass[runningheads,a4paper]{llncs}
+
+\usepackage{amssymb}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+
+\usepackage{url}
+\urldef{\mailsa}\path {zhangbowen@pku.edu.cn}
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+\noindent\keywordname\enspace\ignorespaces#1}
+
+%\usepackage{url}
+%\urldef{\mailsa}\path|{whpxhy, bbb, ccc, ddd, eee}@pku.edu.cn|
+%\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+%\noindent\keywordname\enspace\ignorespaces#1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% those are abbreviations defined by us
+
+\usepackage{mathrsfs,amssymb,stmaryrd,amsmath,mathtools,algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{color}
+\usepackage{tabularx}
+\usepackage{verbatim}
+\usepackage{tabulary}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{bm}
+%\allowdisplaybreaks
+
+\def\si{-\!\!\!*~}
+
+\def\lra{\leftrightarrow}
+\def\ra{\rightarrow}
+\def\Lra{\Leftrightarrow}
+\def\Ra{\Rightarrow}
+\def\lb{\llbracket}
+\def\rb{\rrbracket}
+
+\def\dom{\mathrm{dom}}
+% those are abbreviations defined by us
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+	
+	\mainmatter  % start of an individual contribution
+	
+	% first the title is needed
+	\title{Outline for Hoare Logic Proof Assistant}
+	\date{2020/04/05}
+	
+	% a short form should be given in case it is too long for the running head
+	
+	% the name(s) of the author(s) follow(s) next
+	%
+	% NB: Chinese authors should write their first names(s) in front of
+	% their surnames. This ensures that the names appear correctly in
+	% the running heads and the author index.
+	%
+	\author{Bowen Zhang \and Zhechen Li}
+		
+	%
+	\authorrunning{Bowen Zhang et al.}
+	% (feature abused for this document to repeat the title also on left hand pages)
+	
+	% the affiliations are given next; don't give your e-mail address
+	% unless you accept that it will be published
+	\institute{Key Laboratory of High Confidence Software Technologies (MOE),\\ School of Electronics Engineering and Computer Science, \\
+		Peking University, Beijing 100871, China\\
+	}
+	
+	%
+	% NB: a more complex sample for affiliations and the mapping to the
+	% corresponding authors can be found in the file "llncs.dem"
+	% (search for the string "\mainmatter" where a contribution starts).
+	% "llncs.dem" accompanies the document class "llncs.cls".
+	%
+	
+	\maketitle
+	
+	
+	\begin{abstract}
+	
+		Using these methods, the partial correctness of BCSSs management programs can be proved.
+		
+		\keywords{Separation Logic, Modeling Language, Formal Verification, Cloud Storage Systems}
+	
+	\end{abstract}
+
+
+%\title{Outline for Hoare Logic Proof Assistant}
+%\author{Bowen Zhang}
+%\date{2020/04/05}
+
+
+%	\maketitle
+\section{Induction}
+Computer programs tend to become involved in a growing number of devices. Moreover, the complexity of those programs keeps increasing. Nowadays, even mobile software needs thousands of lines of code to be implemented. One major concern is whether programs behave as they are intended to. Writing a program that appears to work is not so hard. Producting an absolutely correct program is vary difficult. Even one single character wrong among millions of lines of code may cause a bug. If you are playing a game on your cell phone and a bug causes the game to crash suddenly, or even causes the phone to reboot, it will be upsetting but it will not have serious consequences. However, think of the consequences of a bug occurring in the control program of an airplan, or a bug in the control system of a nuclear plant. 
+
+Testing is often used to expose bugs, enough test cases can guarantee the one hundred percent code coverage. Yet, there is no guarantee that it will expose all the bugs. For example, testing may not expose the bugs like reading a value in memory at an address that has never been allocated by the program. More advanced approaches are needed to prove that programs always behave as intended. Among them, the program verification is the most frequently used method, which can guarantee the correctness of the programs from the mathematical point.
+
+~\\
+\noindent \textbf{Program Verification}\quad
+In the context of program verification, a program is said to be correct if it satisfies its specification. The specification of a program is a description of what a program is intended to compute, regardless of how it computes it. 
+
+[Some introduction of research on logical verification system result.Focus on verification by paper-and-pen. Describe the rigorous and general of program verification. Meanwhile, express implicitly that the reasoning process is complex.]
+
+While several decades of research on this topic have brought many useful ingredients for building verification systems, no tool has yet succeeded in making program verification as an easy thing. Using an interactive theorem prover is an approach to transferring information from the user to the verification
+tool.
+
+~\\
+\noindent \textbf{Interactive Verification}\quad
+An interactive theorem prover, also called a proof assistant, allows one to state a theorem, for instance a mathematical result from group theory, and to prove it interactively.In an interactive proof, the user writes a sequence of tactics and statements for describing the reasoning steps in the proofs, while the proof assistant verifies each of those steps is legitimate.There is no way to fool the theorem prover:if the proof of a theorem is accepted by the system, then the theorem is certainly true.The statement "this program admits that specification" can be viewed as a theorem. So, one could naturally attempt to prove statements of this form using a proof assistant.
+
+
+Interactive theorem provers can satisfy not only the rigorous but the convenience of verification. It thus have been significantly improved in the last decade.
+
+[Some researchs on ITP]
+While most results in ITP need users to describe every step of specificaton, it doesn't seem to make verification much easier. 
+\\
+I have re-discovered Hoare Logic while looking for a way to simplify the verification, in which some redundant specification can be skipped by tactics in the theorem prover. In a sense, my approach may be viewed as removing some unnecessary and obvious factors during verification, hiding the technical details while retaining its benefits.
+
+\section{The Modeling Language using Coq}
+\section{The Specification Language using Coq}
+\section{An example}
+\section{Conclusion}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
